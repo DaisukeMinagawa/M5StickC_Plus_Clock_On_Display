@@ -11,7 +11,7 @@
 // 定数/変数　定義部　Constant / variable definition section.
 // ------------------------------------------------------------
 Preferences preferences;
-const char* ssid = "your_ssid";        // アクセスポイント情報（SSID）を直接記述
+const char* ssid = "your_ssid";        // アクセスポイント情報（SSID）を直接記述 Wifi2.4Gに制限されているのに注意
 const char* password = "your_password";    // アクセスポイント情報（パスワード）を直接記述
 
 int n_fonts[] = {1,2,4,6,7,8};
@@ -44,8 +44,8 @@ const char* NTPSRV          = "ntp.jst.mfeed.ad.jp";  // NTPサーバーアド�
 const long  GMT_OFFSET      = 9 * 3600;               // GMT-TOKYO(時差９時間）9 hours time difference.
 const int   DAYLIGHT_OFFSET = 0;                      // サマータイム設定なし No daylight saving time setting
 
-// 時刻・日付の生成　Time / date generation.
-RTC_TimeTypeDef RTC_TimeStruct;                       // RTC時刻　Times of Day.
+// 時刻・日付の生成　Time / date ge neration.
+RTC_TimeTypeDef RTC_TimeStruct;                    // RTC時刻　Times of Day.
 RTC_DateTypeDef RTC_DateStruct;                       // RTC日付  Date
 int smin = 0;
 
@@ -321,25 +321,37 @@ delay(5000);
 void setup() {
 // M5StickCの初期化と動作設定　Initialization and operation settings of M5StickC.
 M5.begin(); // 開始
+
+//LCD Test
+  // M5.begin();
+  // M5.Lcd.setRotation(3);
+  // M5.Lcd.fillScreen(BLACK);
+  // M5.Lcd.setTextColor(WHITE);
+  // M5.Lcd.setTextSize(2);
+  // M5.Lcd.setCursor(0, 0);
+  // M5.Lcd.print("Hello, M5StickC Plus!");
+  // delay(20000);
+
 // シリアルコンソールの開始　Start serial console.
-Serial.begin(115200);
-delay(500);
+// Serial.begin(115200);
+// delay(500);
+M5.Lcd.begin(); // LCDの初期化
 // Wi-Fi接続 We start by connecting to a WiFi network
-Serial.println(); // シリアルポート経由でPCのシリアルモニタに出力
-Serial.println();
-Serial.print("Connecting to ");
-Serial.println(ssid);
+M5.Lcd.println(); // LCDに出力
+M5.Lcd.println();
 M5.Lcd.setRotation(3);
+M5.Lcd.print("Connecting to ");
+M5.Lcd.println(ssid);
 WiFi.begin(ssid, password); // Wi-Fi接続開始
 // Wi-Fi接続の状況を監視（WiFi.statusがWL_CONNECTEDになるまで繰り返し
 while (WiFi.status() != WL_CONNECTED) {
 delay(500);
-Serial.print("."); }
-// Wi-Fi接続結果をシリアルモニタへ出力
-Serial.println("");
-Serial.println("WiFi connected");
-Serial.println("IP address: ");
-Serial.println(WiFi.localIP());
+M5.Lcd.print("."); }
+// Wi-Fi接続結果をLCDへ出力
+M5.Lcd.println("");
+M5.Lcd.println("WiFi connected");
+M5.Lcd.println("IP address: ");
+M5.Lcd.println(WiFi.localIP());
 // 時刻同期関数
 time_sync(NTPSRV, GMT_OFFSET, DAYLIGHT_OFFSET);
 // ディスプレイテスト（フォントと画面ローテーション）
@@ -357,16 +369,17 @@ Clock_screen_display();         // 時計表示　Clock display.
 delay(980);
 if (WiFi.status() == WL_CONNECTED) {
 //Wi-Fiからの切断
-Serial.println("Disconnect from WiFi");
+M5.Lcd.println("Disconnect from WiFi");
 WiFi.disconnect();
 // Wi-Fi接続の状況を監視（WiFi.statusがWL_DISCONNECTEDになるまで繰り返し
 while (WiFi.status() !=WL_DISCONNECTED) {
   delay(500);
-  Serial.print(".");}
+  M5.Lcd.print(".");
+  }
 
 // Wi-Fi切断結果をシリアルモニタへ出力
-Serial.println("");
-Serial.println("WiFi disconnected");
+M5.Lcd.println("");
+M5.Lcd.println("WiFi disconnected");
         // 0.98秒待ち
   }
 }
