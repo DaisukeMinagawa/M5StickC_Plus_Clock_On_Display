@@ -8,11 +8,11 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/include",
-                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/src",
+                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/include",
+                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/src",
                 "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src",
-                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/.pio/libdeps/m5stick-c/M5StickCPlus/src",
+                "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/.pio/libdeps/m5stick-c/M5StickCPlus/src",
                 "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                 "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
                 "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
@@ -245,11 +245,11 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/include",
-                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/src",
+                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/include",
+                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/src",
                     "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src",
-                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Watch/.pio/libdeps/m5stick-c/M5StickCPlus/src",
+                    "C:/Users/aki_f/OneDrive/ドキュメント/PlatformIO/Projects/M5StickC_Plus_Clock_On_Display/.pio/libdeps/m5stick-c/M5StickCPlus/src",
                     "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                     "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
                     "C:/Users/aki_f/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",

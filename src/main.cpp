@@ -65,18 +65,4 @@ void loop() {
     Serial.println("");
     Serial.println("WiFi disconnected");
   }
-  else {
-    //Wi-Fiへの再接続
-    Serial.println("Reconnect to WiFi");
-    WiFi.begin(ssid, password); // Wi-Fi接続開始
-    // Wi-Fi接続の状況を監視（WiFi.statusがWL_CONNECTEDになるまで繰り返し
-    while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
-    }
-    // Wi-Fi接続結果をシリアルモニタへ出力
-    Serial.println("");
-    Serial.println("WiFi connected");
-    Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
-  }
+}
