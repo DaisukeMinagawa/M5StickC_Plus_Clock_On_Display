@@ -63,8 +63,8 @@ void time_sync(const char* ntpsrv, long gmt_offset, int daylight_offset) {
   struct tm timeInfo;                             // tmオブジェクトをtimeinfoとして生成
   if (getLocalTime(&timeInfo)) {                  // timeinfoに現在時刻を格納
     // 現在時刻の格納が正常終了したら実行
-    Serial.print("NTP : ");                       // シリアルモニターに表示
-    Serial.println(ntpsrv);                       // シリアルモニターに表示
+    M5.Lcd.print("NTP : ");                       // LCDに表示
+    M5.Lcd.println(ntpsrv);                       // シLCDに表示
 
     // 時刻の取り出し
     RTC_TimeTypeDef TimeStruct;                   // 時刻格納用の構造体を生成
@@ -80,13 +80,13 @@ void time_sync(const char* ntpsrv, long gmt_offset, int daylight_offset) {
     DateStruct.Year = timeInfo.tm_year + 1900;    // 年を格納（1900年からの経過年を取得するので1900を足す）
     M5.Rtc.SetDate(&DateStruct);                  // 日付を書き込み
 
-    Serial.printf("RTC %04d-%02d-%02d %02d:%02d:%02d\n",    // シリアルモニターに表示
+    M5.Lcd.printf("RTC %04d-%02d-%02d %02d:%02d:%02d\n",    // LCDに表示
     DateStruct.Year, DateStruct.Month, DateStruct.Date,
     TimeStruct.Hours, TimeStruct.Minutes, TimeStruct.Seconds);
 
   }
   else {
-    Serial.print("NTP Sync Error ");              // シリアルモニターに表示
+    M5.Lcd.print("NTP Sync Error ");              // LCDに表示
   }
 }
 
@@ -173,7 +173,7 @@ void display_char_test(int rotate, const char* test_txt) {
   M5.Lcd.setRotation(rotate);
 
   // フォント種類を変化させて画面に表示する（５秒間隔）
-  Serial.println("Change the font type and display it on the screen");         // シリアルモニターに出力
+  M5.Lcd.println("Change the font type and display it on the screen");         // LCDに出力
   for(int i = 0; i< sizeof(n_fonts)/sizeof(int); i++) {
     M5.Lcd.fillScreen(BLACK);                           // 画面全体の塗りつぶし
     M5.Lcd.setCursor(0, 0);                             // カーソル位置の指定
@@ -194,12 +194,12 @@ void display_char_test(int rotate, const char* test_txt) {
 }
 
 // ------------------------------------------------------------
-// 標準モジュール（M5.Lcd）を使った画面色表示 関数　
-// Screen color display function using standard module (M5.Lcd).
+// 標準モジュール（M5.Lcd）を使った画面色表示のテスト関数　
+// Test screen color display function using standard module (M5.Lcd).
 // ------------------------------------------------------------
 void display_color_test() {
   // 画面塗りつぶし色を変更して画面に表示する（５秒間隔）
-  Serial.println("Change the screen fill color and display it on the screen");  // シリアルモニターに出力
+  M5.Lcd.println("Change the screen fill color and display it on the screen");  // LCDに出力
   for(int i = 0; i < sizeof(n_color)/sizeof(int); i++) {
     M5.Lcd.setRotation(3);                              // 画面の向きを指定
     M5.Lcd.fillScreen(n_color[i]);                      // 画面全体の塗りつぶし
@@ -211,19 +211,19 @@ void display_color_test() {
     M5.Lcd.setTextColor(WHITE, BLACK);                  // フォントカラーとバックグランドカラーの表示
     M5.Lcd.print(n_color_name[i]);                      // 表示しているカラー名を表示
 
-    Serial.println(n_color_name[i]);                    // シリアルモニターに出力
+    M5.Lcd.println(n_color_name[i]);                    // LCDに出力
 
     delay(5000);                                        // 待ち
   }  
 }
 
 // ------------------------------------------------------------
-// 標準モジュール（M5.Lcd）を使った画面色表示 関数　
-// Screen color display function using standard module (M5.Lcd).
+// 標準モジュール（M5.Lcd）を使った画面色表示のテスト関数　
+//Test screen color display function using standard module (M5.Lcd).
 // ------------------------------------------------------------
 void display_shape_test() {
 // 画面塗りつぶし色を変更して画面に表示する（５秒間隔）
-Serial.println("Change the screen fill color and display it on the screen");    // シリアルモニターに出力
+M5.Lcd.println("Change the screen fill color and display it on the screen");    // LCDに出力
 M5.Lcd.setRotation(3);                              // 画面の向きを指定
 // 直線描画
 M5.Lcd.fillScreen(BLACK);                           // 画面全体の塗りつぶし
@@ -321,20 +321,6 @@ delay(5000);
 void setup() {
 // M5StickCの初期化と動作設定　Initialization and operation settings of M5StickC.
 M5.begin(); // 開始
-
-//LCD Test
-  // M5.begin();
-  // M5.Lcd.setRotation(3);
-  // M5.Lcd.fillScreen(BLACK);
-  // M5.Lcd.setTextColor(WHITE);
-  // M5.Lcd.setTextSize(2);
-  // M5.Lcd.setCursor(0, 0);
-  // M5.Lcd.print("Hello, M5StickC Plus!");
-  // delay(20000);
-
-// シリアルコンソールの開始　Start serial console.
-// Serial.begin(115200);
-// delay(500);
 M5.Lcd.begin(); // LCDの初期化
 // Wi-Fi接続 We start by connecting to a WiFi network
 M5.Lcd.println(); // LCDに出力
@@ -377,9 +363,8 @@ while (WiFi.status() !=WL_DISCONNECTED) {
   M5.Lcd.print(".");
   }
 
-// Wi-Fi切断結果をシリアルモニタへ出力
+// Wi-Fi切断結果をLCDへ出力
 M5.Lcd.println("");
 M5.Lcd.println("WiFi disconnected");
-        // 0.98秒待ち
   }
 }
